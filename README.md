@@ -1,20 +1,23 @@
-# CSharp Unity Utils
-Este repositório é dedicado a fornecer uma coleção de scripts úteis e extensões desenvolvidas em C# para facilitar o desenvolvimento de projetos Unity.
+# C# Unity Utils
 
-**Recursos:**
-* Scripts Utilitários: Conjunto de scripts que simplificam tarefas comuns no desenvolvimento com Unity.
-* Extensões de Componentes: Expansões de componentes padrão do Unity para adicionar funcionalidades extras.
-* Ferramentas de Depuração: Scripts que auxiliam na depuração e no monitoramento de desempenho.
-* Automatizações: Scripts para automatizar tarefas repetitivas e melhorar a eficiência do desenvolvimento.
-* Exemplos e Tutoriais: Exemplos práticos e tutoriais para ajudar na implementação das ferramentas no seu projeto.
+This repository gathers reusable helpers, component extensions and tools extracted from real projects — the goal is to avoid rewriting the same boilerplate in every new Unity game.
 
-# Como Usar
-1. Clone o Repositório:
+**Features:**
+
+* **Utility Scripts:** a set of scripts that simplify common tasks in Unity development.
+* **Component Extensions:** extensions to standard Unity components that add extra functionality.
+* **Debugging Tools:** scripts that help with debugging and performance monitoring.
+* **Automations:** scripts to automate repetitive tasks and improve development efficiency.
+* **Examples and Tutorials:** practical examples and guides to help you implement the tools in your own project.
+
+## How to Use
+
+1. Clone the repository:
 ```
-git clone https://github.com/seu-usuario/CSharpUnityUtils.git 
+git clone https://github.com/guavovic/csharp-unity-utils.git
 ```
-2. Importe os scripts desejados diretamente para o seu projeto Unity e siga as instruções específicas de cada script.
+2. Import the scripts you need directly into your Unity project and follow the specific instructions for each one.
 #
 > [!IMPORTANT]
-> Contribuições são muito bem vindas. Se você tiver scripts úteis ou melhorias para os existentes, sinta-se à vontade para abrir um pull request.\
-> Por favor, consulte o arquivo [CONTRIBUTING.md](https://github.com/guavovic/CSharpUnityUtils/blob/main/CONTRIBUTING.md) para obter diretrizes sobre como contribuir.
+> Contributions are very welcome. If you have useful scripts or improvements to existing ones, feel free to open a pull request.\
+> Please check the [CONTRIBUTING.md](https://github.com/guavovic/csharp-unity-utils/blob/main/CONTRIBUTING.md) file for guidelines on how to contribute.
