@@ -1,6 +1,6 @@
 # C# Unity Utils
 
-This repository gathers reusable helpers, component extensions and tools extracted from real projects — the goal is to avoid rewriting the same boilerplate in every new Unity game.
+This repository gathers reusable helpers, component extensions and tools extracted from real projects: the goal is to avoid rewriting the same boilerplate in every new Unity game.
 
 **Features:**
 
