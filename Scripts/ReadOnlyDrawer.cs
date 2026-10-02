@@ -6,14 +6,11 @@ using UnityEditor;
 namespace GV.Extensions
 {
     /// <summary>
-    /// Classe de atributo usado para marcar uma variável como somente leitura.
+    /// Mostra o campo no inspector, mas sem permitir edição.
     /// </summary>
     public class ReadOnlyAttribute : PropertyAttribute { }
 
 #if UNITY_EDITOR
-    /// <summary>
-    /// Classe do desenhista personalizado para variáveis marcadas com [ReadOnly].
-    /// </summary>
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyDrawer : PropertyDrawer
     {
@@ -24,14 +21,10 @@ namespace GV.Extensions
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
+            bool wasEnabled = GUI.enabled;
             GUI.enabled = false;
             EditorGUI.PropertyField(position, property, label, true);
-            GUI.enabled = true;
-        }
-
-        public override bool CanCacheInspectorGUI(SerializedProperty property)
-        {
-            return false;
+            GUI.enabled = wasEnabled;
         }
     }
 #endif

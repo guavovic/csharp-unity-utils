@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -7,24 +5,22 @@ using UnityEditor;
 
 namespace GV.Extensions
 {
+    /// <summary>
+    /// Campo de cena para o inspector: arraste o asset da cena e use o nome ou o caminho em runtime.
+    /// </summary>
     [System.Serializable]
     public class SceneField
     {
-        [SerializeField]
-        private Object _sceneAsset;
+        [SerializeField] private Object _sceneAsset;
+        [SerializeField] private string _sceneName = "";
+        [SerializeField] private string _scenePath = "";
 
-        [SerializeField]
-        private string _sceneName = "";
+        public string SceneName => _sceneName;
+        public string ScenePath => _scenePath;
 
-        public string SceneName
-        {
-            get { return _sceneName; }
-        }
-
-        //make it work with existing Unity methods (LoadLevel/LoadScene)
         public static implicit operator string(SceneField sceneField)
         {
-            return sceneField.SceneName;
+            return sceneField?.SceneName;
         }
     }
 
@@ -34,18 +30,22 @@ namespace GV.Extensions
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            EditorGUI.BeginProperty(position, GUIContent.none, property);
+            EditorGUI.BeginProperty(position, label, property);
 
             SerializedProperty sceneAsset = property.FindPropertyRelative("_sceneAsset");
             SerializedProperty sceneName = property.FindPropertyRelative("_sceneName");
+            SerializedProperty scenePath = property.FindPropertyRelative("_scenePath");
 
             position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
-            if (sceneAsset != null)
-            {
-                sceneAsset.objectReferenceValue = EditorGUI.ObjectField(position, sceneAsset.objectReferenceValue, typeof(SceneAsset), false);
 
-                if (sceneAsset.objectReferenceValue != null)
-                    sceneName.stringValue = (sceneAsset.objectReferenceValue as SceneAsset).name;
+            EditorGUI.BeginChangeCheck();
+            Object scene = EditorGUI.ObjectField(position, sceneAsset.objectReferenceValue, typeof(SceneAsset), false);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                sceneAsset.objectReferenceValue = scene;
+                sceneName.stringValue = scene != null ? scene.name : "";
+                scenePath.stringValue = scene != null ? AssetDatabase.GetAssetPath(scene) : "";
             }
 
             EditorGUI.EndProperty();
