@@ -1,23 +1,30 @@
 # C# Unity Utils
 
-This repository gathers reusable helpers, component extensions and tools extracted from real projects: the goal is to avoid rewriting the same boilerplate in every new Unity game.
+Pacote de utilitários para Unity, tirados de projetos reais, para não reescrever o mesmo código a cada jogo novo.
 
-**Features:**
+## O que tem
 
-* **Utility Scripts:** a set of scripts that simplify common tasks in Unity development.
-* **Component Extensions:** extensions to standard Unity components that add extra functionality.
-* **Debugging Tools:** scripts that help with debugging and performance monitoring.
-* **Automations:** scripts to automate repetitive tasks and improve development efficiency.
-* **Examples and Tutorials:** practical examples and guides to help you implement the tools in your own project.
+| Área | Itens |
+|---|---|
+| Inspector | `[ReadOnly]`, `[Required]`, `[ShowIf]` e `SceneField` (arraste a cena e use o nome ou o caminho) |
+| Jogo | `Singleton<T>`, `Cooldown`, `CoroutineRunner`, `SafeAreaFitter` e `FrameRateDisplay` |
+| Dados | `TypedPlayerPrefs` (bool, enum e objeto como JSON), `ApplicationLanguageIdentifier` e `DateRegionConverter` |
+| Extensões | `Vector2` e `Vector3`, `Transform`, `Color`, `LayerMask`, listas (`RandomElement`, `Shuffle`) e `MonoBehaviour` |
+| Texto | `StringUtilities.FormatFieldName` |
 
-## How to Use
+## Instalação
 
-1. Clone the repository:
+No Unity, abra **Window > Package Manager > Add package from git URL** e use:
+
 ```
-git clone https://github.com/guavovic/csharp-unity-utils.git
+https://github.com/guavovic/csharp-unity-utils.git
 ```
-2. Import the scripts you need directly into your Unity project and follow the specific instructions for each one.
-#
+
+## Como foi feito
+
+- C# em um pacote UPM para Unity 2021.3 ou mais novo, com os assemblies de Runtime e Editor separados por `asmdef`
+- drawers do inspector no assembly de Editor, para o código de editor nunca entrar no build do jogo
+- testes de edit mode com NUnit e Unity Test Framework
+
 > [!IMPORTANT]
-> Contributions are very welcome. If you have useful scripts or improvements to existing ones, feel free to open a pull request.\
-> Please check the [CONTRIBUTING.md](https://github.com/guavovic/csharp-unity-utils/blob/main/CONTRIBUTING.md) file for guidelines on how to contribute.
+> Contribuições são bem-vindas. Veja o [CONTRIBUTING.md](CONTRIBUTING.md).
