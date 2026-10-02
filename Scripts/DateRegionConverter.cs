@@ -1,58 +1,31 @@
-using UnityEngine;
-using System.Globalization;
 using System;
+using System.Globalization;
+using UnityEngine;
 
-public static class DateRegionConverter
+namespace GV.Extensions
 {
-    private static readonly string americanDateFormat = "MM/dd/yyyy";
-    private static readonly string brazilianDateFormat = "dd/MM/yyyy";
-
-    /// <summary>
-    /// Obt�m a data formatada de acordo com a regi�o do dispositivo.
-    /// </summary>
-    /// <param name="date">A data no formato a ser formatado.</param>
-    /// <returns>A data formatada de acordo com a regi�o do dispositivo.</returns>
-    public static string GetLocalizedDate(string date)
+    public static class DateRegionConverter
     {
-        string region = GetDeviceRegion();
-        return ConvertToLocalizedDateFormat(date, region);
-    }
+        private const string AmericanFormat = "MM/dd/yyyy";
+        private const string BrazilianFormat = "dd/MM/yyyy";
 
-    private static string GetDeviceRegion()
-    {
-        string region = "";
-
-#if UNITY_IOS
-        if (CultureInfo.CurrentCulture != null)
-            region = CultureInfo.CurrentCulture.DisplayName;
-#elif UNITY_ANDROID
-        AndroidJavaClass localeClass = new AndroidJavaClass("java.util.Locale");
-        AndroidJavaObject defaultLocale = localeClass.CallStatic<AndroidJavaObject>("getDefault");
-        region = defaultLocale.Call<string>("getCountry");
-#else
-        region = CultureInfo.CurrentCulture.Name;
-#endif
-
-        return region;
-    }
-
-    private static string ConvertToLocalizedDateFormat(string date, string region)
-    {
-        CultureInfo culture;
-        string dateFormat;
-
-        if (region.Equals("BR", System.StringComparison.OrdinalIgnoreCase))
+        /// <summary>
+        /// Formata a data no padrão do idioma do aparelho: dd/MM/yyyy em português e MM/dd/yyyy nos demais.
+        /// </summary>
+        public static string GetLocalizedDate(DateTime date)
         {
-            culture = CultureInfo.CreateSpecificCulture("pt-BR");
-            dateFormat = brazilianDateFormat;
-        }
-        else
-        {
-            culture = CultureInfo.InvariantCulture;
-            dateFormat = americanDateFormat;
+            string format = Application.systemLanguage == SystemLanguage.Portuguese ? BrazilianFormat : AmericanFormat;
+            return date.ToString(format, CultureInfo.InvariantCulture);
         }
 
-        DateTime parsedDate = DateTime.ParseExact(date, americanDateFormat, CultureInfo.InvariantCulture);
-        return parsedDate.ToString(dateFormat, culture);
+        /// <summary>
+        /// Recebe a data como MM/dd/yyyy e devolve no padrão do aparelho. Se o texto não estiver nesse formato, devolve o texto original.
+        /// </summary>
+        public static string GetLocalizedDate(string americanDate)
+        {
+            return DateTime.TryParseExact(americanDate, AmericanFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date)
+                ? GetLocalizedDate(date)
+                : americanDate;
+        }
     }
 }

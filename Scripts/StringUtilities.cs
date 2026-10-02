@@ -1,20 +1,24 @@
+using System.Globalization;
+using System.Text.RegularExpressions;
+
 namespace GV.Extensions
 {
     public static class StringUtilities
     {
+        private static readonly Regex WordBoundary = new Regex(
+            "(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])",
+            RegexOptions.Compiled);
+
         /// <summary>
-        /// Este método tem como objetivo formatar um nome de campo.
-        /// Primeiro, ele substitui todos os underscores ("_") no nome do campo por espaços em branco.
-        /// Em seguida, utiliza uma expressão regular para encontrar qualquer letra maiúscula que não esteja no início da string (usando a sequência de escape "\B") e adiciona um espaço antes dela.
-        ///
-        /// Por exemplo, se o nome do campo for "nome_do_campo", o método retornará "Nome do Campo".
+        /// Transforma o nome de um campo em texto legÃ­vel: "playerMaxHP" vira "Player Max HP" e "nome_do_campo" vira "Nome Do Campo".
         /// </summary>
-        /// <param name="fieldName">O nome do campo a ser formatado.</param>
-        /// <returns>O nome do campo formatado.</returns>
         public static string FormatFieldName(string fieldName)
         {
-            fieldName = fieldName.Replace("_", " ");
-            return System.Text.RegularExpressions.Regex.Replace(fieldName, "(\\B[A-Z])", " $1");
+            if (string.IsNullOrEmpty(fieldName))
+                return string.Empty;
+
+            string spaced = WordBoundary.Replace(fieldName.Trim('_').Replace('_', ' '), " ");
+            return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(spaced);
         }
     }
 }
