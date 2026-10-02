@@ -1,16 +1,8 @@
-using UnityEngine;
-#if UNITY_EDITOR
 using UnityEditor;
-#endif
+using UnityEngine;
 
-namespace GV.Extensions
+namespace GV.Extensions.Editor
 {
-    /// <summary>
-    /// Mostra o campo no inspector, mas sem permitir edição.
-    /// </summary>
-    public class ReadOnlyAttribute : PropertyAttribute { }
-
-#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyDrawer : PropertyDrawer
     {
@@ -27,5 +19,4 @@ namespace GV.Extensions
             GUI.enabled = wasEnabled;
         }
     }
-#endif
 }

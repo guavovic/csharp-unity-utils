@@ -1,18 +1,22 @@
-Obrigado por considerar contribuir para o CSharpUnityUtils! 
+Obrigado por considerar contribuir com o C# Unity Utils!
 
-# Como Contribuir
+# Como contribuir
 
-Envie suas Pull Requests se você deseja corrigir um bug, adicionar um novo recurso ou melhorar a documentação.
+1. Abra uma issue descrevendo a mudança (um bug, um utilitário novo ou um ajuste de documentação).
+2. Crie uma branch a partir da `main`, como `fix/12-nome-curto` ou `feat/12-nome-curto`.
+3. Abra a Pull Request começando com `Resolve #12.`
 
-# Padrões de Código
-Por favor, siga estes padrões de código ao contribuir:
+# Padrões de código
 
-> Comentário de Código: Adicione comentários claros e úteis. \
-> Nomenclatura: Use nomes descritivos para variáveis e funções. \
-> Formatação: Mantenha a formatação consistente com o restante do projeto.
+> Nomenclatura: use nomes descritivos para variáveis e métodos. \
+> Comentários: só onde o código não se explica sozinho; nos métodos públicos, um `<summary>` curto. \
+> Formatação: siga o estilo dos arquivos que já existem. \
+> Editor: código que usa `UnityEditor` fica na pasta `Editor/`, nunca em `Runtime/`.
 
-# Documentação
-Atualize a documentação conforme necessário, especialmente se você estiver adicionando novos recursos ou fazendo alterações significativas.
+# Testes
+
+Utilitário novo vem com teste de edit mode em `Tests/Editor/`. Para rodar, adicione o pacote como local no seu projeto e inclua o nome dele em `testables` no `manifest.json`.
 
 # Licença
-Ao contribuir com o CSharpUnityUtils, você concorda que suas contribuições serão licenciadas sob a licença MIT.
+
+Ao contribuir, você concorda que sua contribuição será licenciada sob a licença MIT.
