@@ -12,7 +12,7 @@ Pacote de utilitários para Unity, tirados de projetos reais, para não reescrev
 
 ## Instalação
 
-No Unity, abra **Window > Package Manager > Add package from git URL** e use:
+Pede Unity 6 (6000.0) ou mais novo. No Unity, abra **Window > Package Manager > Add package from git URL** e use:
 
 ```
 https://github.com/guavovic/csharp-unity-utils.git

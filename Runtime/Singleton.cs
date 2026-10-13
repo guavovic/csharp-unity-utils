@@ -20,11 +20,7 @@ namespace GV.Extensions
             {
                 if (_instance == null)
                 {
-#if UNITY_2023_1_OR_NEWER
                     _instance = FindAnyObjectByType<T>();
-#else
-                    _instance = FindObjectOfType<T>();
-#endif
                     if (_instance == null)
                         Debug.LogWarning($"Nenhum {typeof(T).Name} foi encontrado na cena.");
                 }
