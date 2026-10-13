@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Documentation~/icone.svg" alt="" width="120">
+  <img src="Documentation~/icone.svg" alt="" width="160">
 </p>
 
 <h1 align="center">C# Unity Utils</h1>
