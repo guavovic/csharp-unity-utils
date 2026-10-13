@@ -26,11 +26,7 @@ namespace GV.Extensions
         /// </summary>
         public static T FindOrWarn<T>(this MonoBehaviour monoBehaviour, bool includeInactive = false) where T : Object
         {
-#if UNITY_2023_1_OR_NEWER
             T result = Object.FindAnyObjectByType<T>(includeInactive ? FindObjectsInactive.Include : FindObjectsInactive.Exclude);
-#else
-            T result = Object.FindObjectOfType<T>(includeInactive);
-#endif
 
             if (result == null)
                 Debug.LogWarning($"Objeto do tipo {typeof(T)} não foi encontrado na cena.", monoBehaviour);
